@@ -1,10 +1,13 @@
 const express = require("express");
+const nocache = require("nocache");
+
 const app = express();
 
+app.use(nocache());
+app.use(express.static('public'));
 
-app.get("/", (req, res) => {
-    res.send("Plantable server working")
+
+
+app.listen(1234, () => {
+    console.log("Running");
 });
-
-
-app.listen(1234);
