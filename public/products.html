@@ -111,6 +111,45 @@
             font-size: 2em;
             color: #161616;
         }
+        .game-list {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .game-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+        .game-card img {
+            width: 100px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        .game-card h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            white-space: pre-line;
+        }
+        .game-card p {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 1rem;
+            white-space: pre-line;
+        }
+        .join-button {
+           
+            user-select: none;
+        }
     </style>
 </head>
 <body>
@@ -130,9 +169,51 @@
     <div class="container">
         <h1 ><span class="highlight">PLANTABLE</span></h1 > <h1 style="font-size: 18pt;"> <div></div>  </h1>
         <h1 style="font-size: 18pt;"> <div></div> Products</h1>
-        <p>Coming Soon  </p>
+        <br></br>
+        <div class="game-list" id="gameList"></div>
+        <script>
+            
+        function createGameCard(name, players, imageUrl, placeId, jobId) {
+            const gameList = document.getElementById('gameList');
 
-       
+            const card = document.createElement('div');
+            card.className = 'game-card';
+
+            const img = document.createElement('img');
+            img.src = imageUrl;
+            img.alt = name;
+    
+
+            const title = document.createElement('h2');
+            title.textContent = name;
+
+            const playersText = document.createElement('p');
+            playersText.textContent = players;
+
+            const button = document.createElement('p');
+            button.style = "color: red; font-weight: bold;"
+            button.className = 'join-button';
+            button.textContent = 'Out of stock!';
+            button.onclick = function () {
+              showNotification("Joining Game...", "info")
+              setTimeout(() => {
+                window.open( `https://www.roblox.com/games/start?placeId=${placeId}&gameId=${jobId}`, '_blank').focus();
+              }, 500);
+            
+             
+              
+            }
+            button.href = '#';
+
+            card.appendChild(img);
+            card.appendChild(title);
+            card.appendChild(playersText);
+            card.appendChild(button);
+
+            gameList.appendChild(card);
+        }
+        createGameCard("Planter Pro", "Our flagship product, perfect for your watering needs", "https://i.imgur.com/MwXcHpg.png", "", "")
+        </script>
        <!-- <div class="stats">
             <div class="stat">
                 <h3>Founded</h3>
@@ -144,6 +225,6 @@
     -->
       
     </div>
-    <p style="text-align: center; font-size: small;">©️ 2024 Sami Hosting, all rights reserved. </p>
+    <p style="text-align: center; font-size: small;">©️ 2025 Sami Hosting, all rights reserved. </p>
 </body>
 </html>
